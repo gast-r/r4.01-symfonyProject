@@ -1,0 +1,99 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<a class="navbar-brand" href="/mi5/en">
+		<i class="fas fa-home"></i>
+		SF Demo
+	</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link" href="/mi5/en/boutique">
+					<i class="fas fa-store"></i>
+					Store
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/mi5/en/panier">
+					<i class="fas fa-shopping-cart"></i>
+					0 Item(s)
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/mi5/en/contact">
+					<i class="fas fa-comments"></i>
+					Contact
+				</a>
+			</li>
+			<li class="nav-item dropdown">
+				<span class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-user"></i>
+					Sign In
+				</span>
+				<div class="dropdown-menu" aria-labelledby="dropdown01">
+					<a class="dropdown-item " href="/mi5/en/login">
+						Sign In/Register
+					</a>
+					<a class="dropdown-item disabled" href="/mi5/en/usager/compte">
+						My Account
+					</a>
+					<a class="dropdown-item disabled" href="/mi5/en/usager/commandes">
+						My Orders
+					</a>
+					<a class="dropdown-item disabled" href="/mi5/en/logout">
+						Logout
+					</a>
+				</div>
+			</li>
+			<li class="nav-item" data-toggle="tooltip" title="Ne devra être visible que pour l'Admin" data-placement="right" data-html="true">
+				<span class="nav-link disabled" href="">
+					<i class="fas fa-tools"></i>
+					BackOffice
+				</span>
+			</li>
+		</ul>
+		<form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" id="searchString" type="text" placeholder="Search Items..." aria-label="Search">
+			<button class="btn btn-secondary my-2 my-sm-0" id="searchButton">
+				<i class="fas fa-search"></i>
+			</button>
+		</form>
+		<ul class="navbar-nav my-0">
+			<li class="nav-item dropdown">
+				<span class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					EUR
+				</span>
+				<div class="dropdown-menu" aria-labelledby="dropdown02" style="min-width: 5rem;">
+					<a class="dropdown-item" href="/mi5/en/changer_monnaie/CAD/boutique_index/%7B%22_locale%22:%22en%22%7D">
+						CAD
+					</a>
+					<a class="dropdown-item" href="/mi5/en/changer_monnaie/USD/boutique_index/%7B%22_locale%22:%22en%22%7D">
+						USD
+					</a>
+					<a class="dropdown-item" href="/mi5/en/changer_monnaie/GBP/boutique_index/%7B%22_locale%22:%22en%22%7D">
+						GBP
+					</a>
+					<a class="dropdown-item" href="/mi5/en/changer_monnaie/PHP/boutique_index/%7B%22_locale%22:%22en%22%7D">
+						PHP
+					</a>
+					<a class="dropdown-item" href="/mi5/en/changer_monnaie/IDR/boutique_index/%7B%22_locale%22:%22en%22%7D">
+						IDR
+					</a>
+				</div>
+			</li>
+		</ul>
+		<ul class="navbar-nav my-0">
+			<li class="nav-item dropdown">
+				<span class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<img src="{{asset('images/locale/en.png')}}" alt="En">
+				</span>
+				<div class="dropdown-menu" aria-labelledby="dropdown03" style="min-width: 5rem;">
+					<a class="dropdown-item" href="/mi5/fr/boutique">
+						<img src="{{asset('images/locale/fr.png')}}" alt="Fr">
+					</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+</nav>
