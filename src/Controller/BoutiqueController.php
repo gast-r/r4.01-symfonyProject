@@ -17,15 +17,17 @@ class BoutiqueController extends AbstractController
         return $this->render('boutique/index.html.twig', [
             'controller_name' => 'BoutiqueController',
             'categories' => $categories,
-            'nb_categories' => count($categories)
         ]);
     }
 
-    #[Route('/rayon/{idCategorie}', name: 'boutique/app_boutique_rayon')]
-    public function rayon(int $idCategorie) : Response
+    #[Route('boutique/rayon/{idCategorie}', name: 'boutique/app_boutique_rayon')]
+    public function rayon(int $idCategorie, BoutiqueService $boutique) : Response
     {
+        $produits = $boutique->findProduitsByCategorie($idCategorie);
+
         return $this->render('boutique/rayon.html.twig', [
             'controller_name' => 'BoutiqueController',
+            'products' => $produits,
         ]);
     }
 
