@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    <title>Symfony Demo</title>
+   Symfony Demo
 {% endblock %}
 
 {% block body %}
@@ -10,8 +10,8 @@
             <h1><i class="fas fa-home"></i>Symfony Demo</h1>
         </div>
         <div class="card-body">
-            <div class="card clickable" onclick="location = '/mi5/en/boutique'">
-                <img src="{{asset('images/epicerie.jpg')}}" class="card-img-top" alt="Logo Boutique Symfony"/>
+            <div class="card clickable" onclick="location = 'boutique'">
+                <img src={{asset('images/epicerie.jpg')}} class="card-img-top" alt="Logo Boutique Symfony"/>
                 <div class="card-body">
                     <p class="card-text"><i>We don't sell anything, we just want to learn</i></p>
                 </div>

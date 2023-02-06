@@ -6,14 +6,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="Démo SF">
 		<meta name="author" content="UGA/IUT2/INFO/Philippe Martin">
-		<link rel="icon" href="{{asset('images/favicon.ico')}}">
+		<link rel="icon" href={{asset('images/favicon.ico')}}>
+		<title>
 		{% block title %}
 		{% endblock %}
+		</title>
 		<!-- CSS : Bootstrap, Fontawsome, projet (styles communs à tout le projet) -->
-		<link href="{{ asset('css/bootstrap-4/bootstrap.min.css') }}" rel="stylesheet"/>
-		<link href="{{ asset('css/fontawsome-5.all.min.css') }}" rel="stylesheet"/>
+		<link href={{ asset('css/bootstrap-4/bootstrap.min.css') }} rel="stylesheet"/>
+		<link href={{ asset('css/fontawsome-5.all.min.css') }} rel="stylesheet"/>
 		<link
-		href="{{ asset('css/projet.css') }}" rel="stylesheet"/>
+		href={{ asset('css/projet.css') }} rel="stylesheet"/>
 		<!-- debut du block css -->
 		{% block css %}{% endblock %}
 		<!-- fin du block css -->
@@ -35,15 +37,15 @@
 			</div>
 		</main>
 		<!-- JS : JQuery, Bootstrap -->
-		<script src="{{asset('js/jquery-3/jquery.slim.min.js')}}"></script>
-		<script src="{{asset('js/bootstrap-4/bootstrap.bundle.min.js')}}"></script>
+		<script src={{asset('js/jquery-3/jquery.slim.min.js')}}></script>
+		<script src={{asset('js/bootstrap-4/bootstrap.bundle.min.js')}}></script>
 		<script>
 			$(function () { // Activation tooltip bootstrap sur la page
 $('[data-toggle="tooltip"]').tooltip();
 // Comportement du bouton de recherche
 $("#searchButton").click(function () {
 var searchString = $('#searchString').val().trim();
-location = ('/mi5/en/boutique/chercher/' + searchString);
+location = ('boutique/chercher/' + searchString);
 return false;
 });
 });
