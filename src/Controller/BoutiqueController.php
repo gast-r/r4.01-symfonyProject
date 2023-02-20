@@ -33,10 +33,12 @@ class BoutiqueController extends AbstractController
     public function rayon(int $idCategorie, BoutiqueService $boutique) : Response
     {
         $produits = $boutique->findProduitsByCategorie($idCategorie);
+        $category = $boutique->findCategorieById($idCategorie);
 
         return $this->render('boutique/rayon.html.twig', [
             'controller_name' => 'BoutiqueController',
             'products' => $produits,
+            'category' => $category,
         ]);
     }
 

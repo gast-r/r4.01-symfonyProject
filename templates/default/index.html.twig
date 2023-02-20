@@ -10,8 +10,8 @@
             <h1><i class="fas fa-home"></i> {% trans %} default.index.title {% endtrans %} </h1>
         </div>
         <div class="card-body">
-            <div class="card clickable" onclick="location = 'boutique'">
-                <img src={{asset('images/epicerie.jpg')}} class="card-img-top" alt="Logo Boutique Symfony"/>
+            <div class="card clickable" onclick="location = '{{ path('app_boutique') }}'">
+                <img src='{{asset('images/epicerie.jpg')}}' class="card-img-top" alt="Logo Boutique Symfony"/>
                 <div class="card-body">
                     <p class="card-text"><i> {% trans %} default.index.message {% endtrans %} </i></p>
                 </div>
