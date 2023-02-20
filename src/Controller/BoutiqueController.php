@@ -9,7 +9,12 @@ use App\Service\BoutiqueService;
 
 class BoutiqueController extends AbstractController
 {
-    #[Route('/boutique', name: 'app_boutique')]
+    #[Route(
+        path: '/{_locale}/boutique',
+        name: 'app_boutique',
+        requirements: ['_locale' => '%app.supported_locales%'],
+        defaults: ['_locale' => 'fr']
+    )]
     public function index(BoutiqueService $boutique): Response
     {
         $categories = $boutique->findAllCategories();
@@ -20,7 +25,11 @@ class BoutiqueController extends AbstractController
         ]);
     }
 
-    #[Route('boutique/rayon/{idCategorie}', name: 'boutique/app_boutique_rayon')]
+    #[Route(
+        path: '/{_locale}/boutique/rayon/{idCategorie}',
+        name: 'app_boutique_rayon',
+        requirements: ['_locale' => '%app.supported_locales%']
+    )]
     public function rayon(int $idCategorie, BoutiqueService $boutique) : Response
     {
         $produits = $boutique->findProduitsByCategorie($idCategorie);
