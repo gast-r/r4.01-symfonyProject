@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Boutique
+{% block title %}
+	{% trans %} boutique.index.title {% endtrans %}
 {% endblock %}
 
 {% block body %}
@@ -8,14 +9,12 @@
 		<div class="card-header">
 			<h1>
 				<i class="fas fa-store"></i>
-				Store : {{categories|length}} Categories
+				{% trans %} boutique.index.nbCategoryMessage {% endtrans %}
 			</h1>
 		</div>
         <div class="card-body row">
         {% for category in categories %}
-		
 			<div class="col-md-3">
-
 				<div class="card clickable" onclick="location = 'boutique/rayon/{{category.id}}'">
 					<img src={{asset(category.visuel)}} class="card-img-top" alt="Fruits">
 					<div class="card-body">

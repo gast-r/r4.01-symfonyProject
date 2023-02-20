@@ -11,45 +11,45 @@
 			<li class="nav-item">
 				<a class="nav-link" href="boutique">
 					<i class="fas fa-store"></i>
-					Store
+					{% trans %} navbar.store {% endtrans %}
 				</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="panier">
 					<i class="fas fa-shopping-cart"></i>
-					0 Item(s)
+					{% trans %} navbar.shoppingCart {% endtrans %}
 				</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="contact">
 					<i class="fas fa-comments"></i>
-					Contact
+					{% trans %} navbar.contact {% endtrans %}
 				</a>
 			</li>
 			<li class="nav-item dropdown">
 				<span class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="fas fa-user"></i>
-					Sign In
+					{% trans %} navbar.signIn {% endtrans %}
 				</span>
 				<div class="dropdown-menu" aria-labelledby="dropdown01">
 					<a class="dropdown-item " href="login">
-						Sign In/Register
+						{% trans %} navbar.signInRegister {% endtrans %}
 					</a>
 					<a class="dropdown-item disabled" href="usager/compte">
-						My Account
+						{% trans %} navbar.myAccount {% endtrans %}
 					</a>
 					<a class="dropdown-item disabled" href="usager/commandes">
-						My Orders
+						{% trans %} navbar.myOrders {% endtrans %}
 					</a>
 					<a class="dropdown-item disabled" href="logout">
-						Logout
+						{% trans %} navbar.signOut {% endtrans %}
 					</a>
 				</div>
 			</li>
 			<li class="nav-item" data-toggle="tooltip" title="Ne devra être visible que pour l'Admin" data-placement="right" data-html="true">
 				<span class="nav-link disabled" href="">
 					<i class="fas fa-tools"></i>
-					BackOffice
+					{% trans %} navbar.backOffice {% endtrans %}
 				</span>
 			</li>
 		</ul>

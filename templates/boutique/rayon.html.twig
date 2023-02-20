@@ -1,16 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Boutique
+{% block title %}
+	{% trans %} boutique.rayon.title {% endtrans %}
 {% endblock %}
 
 {% block body %}
 	<div class="card col-md-12">
 		<div class="card-header">
-			<h1>
-				<i class="fas fa-store"></i>
-				&quot;Junk Food&quot; Category :
-				{{products|length}}
-				Item(s)</h1>
+			<h1><i class="fas fa-store"></i>{% trans %} boutique.rayon.nbArticleMessage {% endtrans %} </h1>
 		</div>
 		<div class="card-body row">
         {% for product in products %}
