@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="GhsJxIL" resname="boutique.index.title">
+        <source>boutique.index.title</source>
+        <target>Store</target>
+      </trans-unit>
+      <trans-unit id="ljN3fNG" resname="boutique.index.nbCategoryMessage">
+        <source>boutique.index.nbCategoryMessage</source>
+        <target>Store : {nbCategory} Categories</target>
+      </trans-unit>
+      <trans-unit id="xTC0QAt" resname="boutique.rayon.title">
+        <source>boutique.rayon.title</source>
+        <target>"{categoryLabel}" Category</target>
+      </trans-unit>
+      <trans-unit id="QChr4NO" resname="boutique.rayon.nbArticleMessage">
+        <source>boutique.rayon.nbArticleMessage</source>
+        <target>"{categoryLabel}" Category : {nbArticle} Item(s)</target>
+      </trans-unit>
+      <trans-unit id="ZICZJNh" resname="navbar.store">
+        <source>navbar.store</source>
+        <target>Store</target>
+      </trans-unit>
+      <trans-unit id="V7m_ZFp" resname="navbar.shoppingCart">
+        <source>navbar.shoppingCart</source>
+        <target>{nbInCart} Item(s)</target>
+      </trans-unit>
+      <trans-unit id="iVNeBrZ" resname="navbar.contact">
+        <source>navbar.contact</source>
+        <target>Contact</target>
+      </trans-unit>
+      <trans-unit id="o5bIVC2" resname="navbar.signIn">
+        <source>navbar.signIn</source>
+        <target>Sign In</target>
+      </trans-unit>
+      <trans-unit id="eAikyL3" resname="navbar.signInRegister">
+        <source>navbar.signInRegister</source>
+        <target>Sign In/Register</target>
+      </trans-unit>
+      <trans-unit id="eWB6UEW" resname="navbar.myAccount">
+        <source>navbar.myAccount</source>
+        <target>My Account</target>
+      </trans-unit>
+      <trans-unit id="CyxQWs_" resname="navbar.myOrders">
+        <source>navbar.myOrders</source>
+        <target>My Orders</target>
+      </trans-unit>
+      <trans-unit id="OuokFp3" resname="navbar.signOut">
+        <source>navbar.signOut</source>
+        <target>Logout</target>
+      </trans-unit>
+      <trans-unit id="IeLtWD." resname="navbar.backOffice">
+        <source>navbar.backOffice</source>
+        <target>BackOffice</target>
+      </trans-unit>
+      <trans-unit id="if1CjXB" resname="base.title">
+        <source>base.title</source>
+        <target>__base.title</target>
+      </trans-unit>
+      <trans-unit id="foktJuG" resname="default.index.title">
+        <source>default.index.title</source>
+        <target>Home</target>
+      </trans-unit>
+      <trans-unit id="rLKiCN7" resname="default.index.message">
+        <source>default.index.message</source>
+        <target>We don't sell anything, we just to learn</target>
+      </trans-unit>
+      <trans-unit id="crr6AHI" resname="default.contact.title">
+        <source>default.contact.title</source>
+        <target>Contact</target>
+      </trans-unit>
+      <trans-unit id="2ECv9wS" resname="default.contact.formation">
+        <source>default.contact.formation</source>
+        <target>BUT Informatique</target>
+      </trans-unit>
+      <trans-unit id="36HHros" resname="default.contact.professor">
+        <source>default.contact.professor</source>
+        <target>Pg. Martin, 2022/23</target>
+      </trans-unit>
+      <trans-unit id="0umDnnC" resname="navbar.home">
+        <source>navbar.home</source>
+        <target>SF Demo</target>
+      </trans-unit>
+      <trans-unit id="xjaG1KP" resname="navbar.search">
+        <source>navbar.search</source>
+        <target>Search items...</target>
+      </trans-unit>
+      <trans-unit id="9Ekzvl1" resname="default.contact.ressource">
+        <source>default.contact.ressource</source>
+        <target>Ressource R4.01</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
