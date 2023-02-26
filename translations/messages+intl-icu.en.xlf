@@ -93,6 +93,14 @@
         <source>default.contact.ressource</source>
         <target>Ressource R4.01</target>
       </trans-unit>
+      <trans-unit id="QjBLH6A" resname="boutique.chercher.title">
+        <source>boutique.chercher.title</source>
+        <target>__boutique.chercher.title</target>
+      </trans-unit>
+      <trans-unit id="dDREtuJ" resname="boutique.chercher.nbArticleMessage">
+        <source>boutique.chercher.nbArticleMessage</source>
+        <target>__boutique.chercher.nbArticleMessage</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

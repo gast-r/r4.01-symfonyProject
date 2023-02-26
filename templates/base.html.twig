@@ -42,14 +42,15 @@
 		<script src='{{asset('js/bootstrap-4/bootstrap.bundle.min.js')}}'></script>
 		<script>
 			$(function () { // Activation tooltip bootstrap sur la page
-$('[data-toggle="tooltip"]').tooltip();
-// Comportement du bouton de recherche
-$("#searchButton").click(function () {
-var searchString = $('#searchString').val().trim();
-location = ('boutique/chercher/' + searchString);
-return false;
-});
-});
+				$('[data-toggle="tooltip"]').tooltip();
+				// Comportement du bouton de recherche
+				$("#searchButton").click(function (e) {
+					e.preventDefault();
+					var searchString = $('#searchString').val().trim();
+					route = "{{ path('app_boutique_recherche', {'recherche':''}) }}";
+					location = route + '/' + encodeURIComponent(searchString);
+				});
+			});
 		</script>
 		<!-- debut du block js -->
 		{% block script %}{% endblock %}
