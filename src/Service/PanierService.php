@@ -52,6 +52,10 @@ class PanierService
     // Ajouter au panier le produit $idProduit en quantite $quantite 
     public function ajouterProduit(int $idProduit, int $quantite = 1) : void
     {
+        if($this->boutique->findProduitById($idProduit) == null) {
+            return;
+        }
+
         if (isset($this->panier[$idProduit])) {
             $this->panier[$idProduit] += $quantite;
         } else {
@@ -65,8 +69,8 @@ class PanierService
     {
       // si la quantite du produit est supérieur à quantite (la quantite à enlever)
         // on enlève cette quantite, sinon on supprime le produit
-      if ($this->panier['idProduit'] > $quantite) {
-          $this->panier['idProduit'] -= $quantite;
+      if ($this->panier[$idProduit] > $quantite) {
+          $this->panier[$idProduit] -= $quantite;
       } else {
           unset($this->panier['idProduit']);
       }
