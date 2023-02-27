@@ -3,7 +3,6 @@
 {% block title %}Panier{% endblock %}
 
 {% block body %}
-    {% if (nbProduct == 0) %}
     <div class="card col-md-12">
         <div class="card-header">
             <h1>
@@ -19,7 +18,7 @@
 
 
             <div class="col-md-12 btn-group btn-group-lg" role="group">
-                <a class="btn btn-primary" href="{{ path('app_panier_index') }}">
+                <a class="btn btn-primary" href="{{ path('app_boutique') }}">
                     {% trans %} panier.index.continueShopping {% endtrans %}</a>
                 {% if (nbProduct != 0) %}
                     <a class="btn btn-primary" href="/panier/commander">
@@ -41,8 +40,8 @@
                 </thead>
                 <tbody>
                 {% for productTab in cartContent %}
-                    {% set product = productTab['produit'] %}
-                    {% set quantity = productTab['quantite'] %}
+                    {% set product = productTab.produit %}
+                    {% set quantity = productTab.quantite %}
                     <tr>
                         <td>
                             <img src="{{ asset(product.visuel) }}" class="cart-img-produit" alt="{{ product.libelle }}">
@@ -61,21 +60,21 @@
                             <a href="panier/enlever/3">
                                 <i class="fas fa-minus-square text-muted"></i>
                             </a>
-                            3
-                            <a href="panier/ajouter/3">
+                            {{ quantity }}
+                            <a href="{{ path('app_panier_ajouter', {'idProduct':product.id, 'quantity':1}) }}">
                                 <i class="fas fa-plus-square text-muted"></i>
                             </a>
                         </td>
                         <td class="text-right">
                             {% trans with {
-                                'totalProductPrice': product.prix*quantite
+                                'totalProductPrice': product.prix*quantity
                             }%} panier.index.totalProductPrice {% endtrans %}
                         </td>
                         <td>
                             <a href="panier/supprimer/3">
                                 <i class="fas fa-trash text-muted"
                                    data-toggle="tooltip" title={% trans with {
-                                    'productName': product.labelle
+                                    'productName': product.libelle
                                 } %} panier.index.removeProduct {% endtrans %}
                                    data-placement="right" data-html="true"></i>
                             </a>
@@ -103,18 +102,4 @@
             {% endif %}
         </div>
     </div>
-    {% else %}
-        <div class="card col-md-12">
-
-            <div class="card-body">
-                <div class="row">
-                    <table class="table table-striped table-sm table-hover">
-
-                        <tbody>
-
-                    </table>
-                </div>
-            </div>
-        </div>
-    {% endif %}
 {% endblock %}
