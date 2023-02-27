@@ -9,8 +9,10 @@
                 <i class="fas fa-shopping-cart"></i>
                 {% trans with {
                     'nbProduit': nbProduct,
-                    'totalPrice': totalPrice
-                } %} panier.index.nbProductAndPrice {% endtrans %}
+                } %} panier.index.nbProduct {% endtrans %}
+                <b> {% trans with {
+                    'price': totalPrice,
+                    } %} panier.index.price {% endtrans %} </b>
             </h1>
 
 
@@ -57,7 +59,7 @@
                                     } %} panier.index.productPrice {% endtrans %}
                                 </td>
                                 <td>
-                                    <a href="panier/enlever/3">
+                                    <a href="{{ path('app_panier_enlever', {'idProduct':product.id, 'quantity':1}) }}">
                                         <i class="fas fa-minus-square text-muted"></i>
                                     </a>
                                     {{ quantity }}
@@ -71,7 +73,7 @@
                                     } %} panier.index.totalProductPrice {% endtrans %}
                                 </td>
                                 <td>
-                                    <a href="panier/supprimer/3">
+                                    <a href="{{ path('app_panier_supprimer', {'idProduct':product.id}) }}">
                                         <i class="fas fa-trash text-muted"
                                            data-toggle="tooltip" title={% trans with {
                                             'productName': product.libelle
@@ -94,7 +96,7 @@
                                 } %} panier.index.totalPrice {% endtrans %}
                             </th>
                             <th>
-                                <a href="panier/vider">
+                                <a href="{{ path('app_panier_vider') }}">
                                     <i class="fas fa-trash text-muted"
                                        data-toggle="tooltip" title={% trans %} panier.index.emptyCart {% endtrans %}
                                        data-placement="right" data-html="true"></i>

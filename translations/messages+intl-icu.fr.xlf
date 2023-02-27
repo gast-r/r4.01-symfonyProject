@@ -153,6 +153,14 @@
         <source>panier.index.emptyCart</source>
         <target>Vider le Panier</target>
       </trans-unit>
+      <trans-unit id="v8qEcuv" resname="panier.index.nbProduct">
+        <source>panier.index.nbProduct</source>
+        <target>{nbProduit} Produit(s) : </target>
+      </trans-unit>
+      <trans-unit id="Ga7tMgq" resname="panier.index.price">
+        <source>panier.index.price</source>
+        <target>{price} €</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
