@@ -24,7 +24,7 @@ class PanierController extends AbstractController
         $totalPrice = $panier->getTotal();
         return $this->render('panier/index.html.twig', [
             'controller_name' => 'PanierController',
-            'inCart' => $contenu_panier,
+            'cartContent' => $contenu_panier,
             'nbProduct' => $nbProduct,
             'totalPrice' => $totalPrice,
         ]);
