@@ -21,11 +21,7 @@ class PanierService
         $this->boutique = $boutique;
         $this->session = $requestStack->getSession();
         // Récupération du panier en session s'il existe, init. à vide sinon
-
-        $this->panier = $this->session->get('panier');
-        if ($this->panier == null) {
-            $this->panier = array();
-        }
+        $this->panier = $this->session->get('panier', array());
     }
 
     // Renvoie le montant total du panier
@@ -33,7 +29,7 @@ class PanierService
     {
         // init the total of the cart to 0
         $prixTotal = 0;
-        // sum all the prices
+        // for each product in the cart, add the price*quantity of the product to the result
         foreach ($this->panier as $id => $quantite) {
             $currentProduct = json_decode($this->boutique->findProduitById($id));
             $prixTotal += ($currentProduct->prix)*$quantite;
@@ -61,24 +57,33 @@ class PanierService
         } else {
             $this->panier[$idProduit] = $quantite;
         }
+        $this->session->set('panier', $this->panier);
     }
 
     // Enlever du panier le produit $idProduit en quantite $quantite 
     public function enleverProduit(int $idProduit, int $quantite = 1) : void
     {
-      unset($this->panier[$idProduit]);
+      // si la quantite du produit est supérieur à quantite (la quantite à enlever)
+        // on enlève cette quantite, sinon on supprime le produit
+      if ($this->panier['idProduit'] > $quantite) {
+          $this->panier['idProduit'] -= $quantite;
+      } else {
+          unset($this->panier['idProduit']);
+      }
+      $this->session->set('panier', $this->panier);
     }
 
     // Supprimer le produit $idProduit du panier
     public function supprimerProduit(int $idProduit) : void
     {
-      /* A COMPLETER */
+      unset($this->panier[$idProduit]);
+      $this->session->set('panier', $this->panier);
     }
 
     // Vider complètement le panier
     public function vider() : void
     {
-      /* A COMPLETER */
+      $this->session->remove('panier');
     }
 
     // Renvoie le contenu du panier dans le but de l'afficher
