@@ -6,14 +6,11 @@
     <div class="card col-md-12">
         <div class="card-header">
             <h1>
-                <i class="fas fa-shopping-cart"></i> 0 Produit(s) : <b>0,00 €</b>
-            </h1>
-            <h1>
                 <i class="fas fa-shopping-cart"></i>
                 {% trans with {
                     'nbProduit': nbProduct,
                     'totalPrice': totalPrice
-                }%} panier.index.nbProductAndPrice {% endtrans %}
+                } %} panier.index.nbProductAndPrice {% endtrans %}
             </h1>
 
 
@@ -22,84 +19,92 @@
                     {% trans %} panier.index.continueShopping {% endtrans %}</a>
                 {% if (nbProduct != 0) %}
                     <a class="btn btn-primary" href="/panier/commander">
-                    {%  trans %} panier.index.placeOrder {% endtrans %}</a>
+                        {% trans %} panier.index.placeOrder {% endtrans %}</a>
                 {% endif %}
             </div>
         </div>
         <div class="card-body">
-            {% if (nbProduct != 0) %}
-                <thead>
-                <tr>
-                    <th></th>
-                    <th>{% trans %} panier.index.itemLabel {% endtrans %}</th>
-                    <th class="text-right">{% trans %} panier.index.PriceLabel {% endtrans %}</th>
-                    <th>{% trans %} panier.index.quantityLabel {% endtrans %}</th>
-                    <th class="text-right">{% trans %} panier.index.totalLabel {% endtrans %}</th>
-                    <th>{% trans %} panier.index.removeLabel {% endtrans %}</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for productTab in cartContent %}
-                    {% set product = productTab.produit %}
-                    {% set quantity = productTab.quantite %}
-                    <tr>
-                        <td>
-                            <img src="{{ asset(product.visuel) }}" class="cart-img-produit" alt="{{ product.libelle }}">
-                        </td>
-                        <td>
-                            <a href="{{ path('app_boutique_rayon', {'idCategorie': product.idCategorie}) }}">
-                                <b>{{ product.libelle }}</b>
-                            </a>
-                        </td>
-                        <td class="text-right">
-                            {% trans with {
-                                'price': product.prix
-                            }%} panier.index.productPrice {% endtrans %}
-                        </td>
-                        <td>
-                            <a href="panier/enlever/3">
-                                <i class="fas fa-minus-square text-muted"></i>
-                            </a>
-                            {{ quantity }}
-                            <a href="{{ path('app_panier_ajouter', {'idProduct':product.id, 'quantity':1}) }}">
-                                <i class="fas fa-plus-square text-muted"></i>
-                            </a>
-                        </td>
-                        <td class="text-right">
-                            {% trans with {
-                                'totalProductPrice': product.prix*quantity
-                            }%} panier.index.totalProductPrice {% endtrans %}
-                        </td>
-                        <td>
-                            <a href="panier/supprimer/3">
-                                <i class="fas fa-trash text-muted"
-                                   data-toggle="tooltip" title={% trans with {
-                                    'productName': product.libelle
-                                } %} panier.index.removeProduct {% endtrans %}
-                                   data-placement="right" data-html="true"></i>
-                            </a>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-                <thead>
-                <tr>
-                    <th class="text-right" colspan="4">
-                        Total                                </th>
-                    <th class="text-right">
-                        {% trans with {
-                           'totalPrice': totalPrice
-                        }%} panier.index.totalPrice {% endtrans %}
-                    </th>
-                    <th>
-                        <a href="panier/vider">
-                            <i class="fas fa-trash text-muted"
-                               data-toggle="tooltip" title={% trans %} panier.index.emptyCart {% endtrans %} data-placement="right" data-html="true"></i>
-                        </a>
-                    </th>
-                </tr>
-                </thead>
-            {% endif %}
+            <div class="row">
+                <table class="table table-striped table-sm table-hover">
+                    {% if (nbProduct != 0) %}
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>{% trans %} panier.index.itemLabel {% endtrans %}</th>
+                            <th class="text-right">{% trans %} panier.index.PriceLabel {% endtrans %}</th>
+                            <th>{% trans %} panier.index.quantityLabel {% endtrans %}</th>
+                            <th class="text-right">{% trans %} panier.index.totalLabel {% endtrans %}</th>
+                            <th>{% trans %} panier.index.removeLabel {% endtrans %}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for productTab in cartContent %}
+                            {% set product = productTab.produit %}
+                            {% set quantity = productTab.quantite %}
+                            <tr>
+                                <td>
+                                    <img src="{{ asset(product.visuel) }}" class="cart-img-produit"
+                                         alt="{{ product.libelle }}">
+                                </td>
+                                <td>
+                                    <a href="{{ path('app_boutique_rayon', {'idCategorie': product.idCategorie}) }}">
+                                        <b>{{ product.libelle }}</b>
+                                    </a>
+                                </td>
+                                <td class="text-right">
+                                    {% trans with {
+                                        'price': product.prix
+                                    } %} panier.index.productPrice {% endtrans %}
+                                </td>
+                                <td>
+                                    <a href="panier/enlever/3">
+                                        <i class="fas fa-minus-square text-muted"></i>
+                                    </a>
+                                    {{ quantity }}
+                                    <a href="{{ path('app_panier_ajouter', {'idProduct':product.id, 'quantity':1}) }}">
+                                        <i class="fas fa-plus-square text-muted"></i>
+                                    </a>
+                                </td>
+                                <td class="text-right">
+                                    {% trans with {
+                                        'totalProductPrice': product.prix*quantity
+                                    } %} panier.index.totalProductPrice {% endtrans %}
+                                </td>
+                                <td>
+                                    <a href="panier/supprimer/3">
+                                        <i class="fas fa-trash text-muted"
+                                           data-toggle="tooltip" title={% trans with {
+                                            'productName': product.libelle
+                                        } %} panier.index.removeProduct {% endtrans %}
+                                           data-placement="right" data-html="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+
+                        <thead>
+                        <tr>
+                            <th class="text-right" colspan="4">
+                                Total
+                            </th>
+                            <th class="text-right">
+                                {% trans with {
+                                    'totalPrice': totalPrice
+                                } %} panier.index.totalPrice {% endtrans %}
+                            </th>
+                            <th>
+                                <a href="panier/vider">
+                                    <i class="fas fa-trash text-muted"
+                                       data-toggle="tooltip" title={% trans %} panier.index.emptyCart {% endtrans %}
+                                       data-placement="right" data-html="true"></i>
+                                </a>
+                            </th>
+                        </tr>
+                        </thead>
+                    {% endif %}
+                </table>
+            </div>
         </div>
     </div>
 {% endblock %}

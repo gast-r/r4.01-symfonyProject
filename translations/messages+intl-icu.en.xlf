@@ -101,6 +101,58 @@
         <source>boutique.chercher.nbArticleMessage</source>
         <target>__boutique.chercher.nbArticleMessage</target>
       </trans-unit>
+      <trans-unit id="HBdNwHa" resname="panier.index.nbProductAndPrice">
+        <source>panier.index.nbProductAndPrice</source>
+        <target>__panier.index.nbProductAndPrice</target>
+      </trans-unit>
+      <trans-unit id="XeYbLt4" resname="panier.index.continueShopping">
+        <source>panier.index.continueShopping</source>
+        <target>__panier.index.continueShopping</target>
+      </trans-unit>
+      <trans-unit id=".TIQVmS" resname="panier.index.placeOrder">
+        <source>panier.index.placeOrder</source>
+        <target>__panier.index.placeOrder</target>
+      </trans-unit>
+      <trans-unit id="Mm9oAxC" resname="panier.index.itemLabel">
+        <source>panier.index.itemLabel</source>
+        <target>__panier.index.itemLabel</target>
+      </trans-unit>
+      <trans-unit id="wSmJNEw" resname="panier.index.PriceLabel">
+        <source>panier.index.PriceLabel</source>
+        <target>__panier.index.PriceLabel</target>
+      </trans-unit>
+      <trans-unit id="VN5SlUP" resname="panier.index.quantityLabel">
+        <source>panier.index.quantityLabel</source>
+        <target>__panier.index.quantityLabel</target>
+      </trans-unit>
+      <trans-unit id="EJF5MDN" resname="panier.index.totalLabel">
+        <source>panier.index.totalLabel</source>
+        <target>__panier.index.totalLabel</target>
+      </trans-unit>
+      <trans-unit id=".ioV3B4" resname="panier.index.removeLabel">
+        <source>panier.index.removeLabel</source>
+        <target>__panier.index.removeLabel</target>
+      </trans-unit>
+      <trans-unit id="saYBOXy" resname="panier.index.productPrice">
+        <source>panier.index.productPrice</source>
+        <target>__panier.index.productPrice</target>
+      </trans-unit>
+      <trans-unit id="Y9U5EYX" resname="panier.index.totalProductPrice">
+        <source>panier.index.totalProductPrice</source>
+        <target>__panier.index.totalProductPrice</target>
+      </trans-unit>
+      <trans-unit id="RNicxMJ" resname="panier.index.removeProduct">
+        <source>panier.index.removeProduct</source>
+        <target>__panier.index.removeProduct</target>
+      </trans-unit>
+      <trans-unit id="iyYQsB3" resname="panier.index.totalPrice">
+        <source>panier.index.totalPrice</source>
+        <target>__panier.index.totalPrice</target>
+      </trans-unit>
+      <trans-unit id="T6aaHxr" resname="panier.index.emptyCart">
+        <source>panier.index.emptyCart</source>
+        <target>__panier.index.emptyCart</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

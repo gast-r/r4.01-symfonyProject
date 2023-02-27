@@ -31,7 +31,7 @@ class PanierService
         $prixTotal = 0;
         // for each product in the cart, add the price*quantity of the product to the result
         foreach ($this->panier as $id => $quantite) {
-            $currentProduct = json_decode($this->boutique->findProduitById($id));
+            $currentProduct = $this->boutique->findProduitById($id);
             $prixTotal += ($currentProduct->prix)*$quantite;
         }
         return $prixTotal;
@@ -94,7 +94,7 @@ class PanierService
         $cart = array();
         foreach ($this->panier as $idProduct => $quantity) {
             $currentProduct = $this->boutique->findProduitById($idProduct);
-            $cart = array("produit" => $currentProduct, "quantite" => $quantity);
+            array_push($cart, array("produit" => $currentProduct, "quantite" => $quantity));
         }
         return $cart;
     }

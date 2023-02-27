@@ -7,26 +7,37 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route(
+    path: '/{_locale}/panier',
+    requirements: ['_locale' => '%app.supported_locales%']
+    )]
 class PanierController extends AbstractController
 {
     #[Route(
-        path: '/{_locale}/panier',
+        path: '/',
         name: 'app_panier_index',
-        requirements: ['_locale' => '%app.supported_locales%']
     )]
     public function index(PanierService $panier): Response
     {
-        // on récupère le contenu du panier
-        $contenu_panier = $panier->getContenu();
-        // le nombre de produit
-        $nbProduct = $panier->getNombreProduits();
-        // and the total price of the cart
-        $totalPrice = $panier->getTotal();
         return $this->render('panier/index.html.twig', [
             'controller_name' => 'PanierController',
-            'cartContent' => $contenu_panier,
-            'nbProduct' => $nbProduct,
-            'totalPrice' => $totalPrice,
+            'cartContent' => $panier->getContenu(), // récupérer le contenu du panier
+            'nbProduct' => $panier->getNombreProduits(), // le nombre total de produits
+            'totalPrice' => $panier->getTotal(), // le prix total de ces produits
         ]);
     }
+    #[Route(
+        path: '/ajouter/{idProduct}/{quantity}',
+        name: 'app_panier_ajouter',
+    )]
+    public function ajouter(PanierService $panier, $idProduct, $quantity): Response
+    {
+        $panier->ajouterProduit($idProduct, $quantity);
+
+        // appeler direct la méthods au app_panier_index
+        return $this->redirectToRoute('app_panier_index');
+    }
+
+
+
 }
