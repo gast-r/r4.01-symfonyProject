@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
+use App\Entity\Produit;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Service\BoutiqueService;
+use Doctrine\Persistence\ManagerRegistry;
 
 class BoutiqueController extends AbstractController
 {
@@ -14,9 +16,11 @@ class BoutiqueController extends AbstractController
         name: 'app_boutique',
         requirements: ['_locale' => '%app.supported_locales%'],
     )]
-    public function index(BoutiqueService $boutique): Response
+    public function index(ManagerRegistry $doctrine): Response
     {
-        $categories = $boutique->findAllCategories();
+        $categories = $doctrine->getManager()
+                                ->getRepository(Categorie::class)
+                                ->findAll();
 
         return $this->render('boutique/index.html.twig', [
             'controller_name' => 'BoutiqueController',
@@ -29,10 +33,17 @@ class BoutiqueController extends AbstractController
         name: 'app_boutique_rayon',
         requirements: ['_locale' => '%app.supported_locales%']
     )]
-    public function rayon(BoutiqueService $boutique, int $idCategorie) : Response
+    public function rayon(ManagerRegistry $doctrine, int $idCategorie) : Response
     {
-        $produits = $boutique->findProduitsByCategorie($idCategorie);
-        $category = $boutique->findCategorieById($idCategorie);
+        $produits = $doctrine
+            ->getManager()
+            ->getRepository(Produit::class)
+            ->findBy(['categorie' => $idCategorie]);
+
+        $category = $doctrine
+            ->getManager()
+            ->getRepository(Categorie::class)
+            ->find($idCategorie);
 
         return $this->render('boutique/rayon.html.twig', [
             'controller_name' => 'BoutiqueController',
@@ -46,9 +57,12 @@ class BoutiqueController extends AbstractController
         name: 'app_boutique_recherche',
         requirements: ['_locale' => '%app.supported_locales%']
     )]
-    public function chercher(BoutiqueService $boutique, string $recherche="") : Response
+    public function chercher(ManagerRegistry $doctrine, string $recherche="") : Response
     {
-        $findedProducts = $boutique->findProduitsByLibelleOrTexte(urldecode($recherche));
+        $findedProducts = $doctrine
+            ->getManager()
+            ->getRepository(Produit::class)
+            ->findByLibelleOrTexte(urldecode($recherche));
 
         return $this->render('boutique/chercher.html.twig', [
             'controller_name' => 'BoutiqueController',

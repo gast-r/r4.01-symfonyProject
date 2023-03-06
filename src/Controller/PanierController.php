@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
-use App\Service\BoutiqueService;
+use App\Entity\Categorie;
+use App\Entity\Produit;
+use Doctrine\Persistence\ManagerRegistry;
 use App\Service\PanierService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,12 +33,18 @@ class PanierController extends AbstractController
         path: '/ajouter/{idProduct}/{quantity}',
         name: 'app_panier_ajouter',
     )]
-    public function ajouter(PanierService $panier, BoutiqueService $boutique, $idProduct, $quantity): Response
+    public function ajouter(PanierService $panier, ManagerRegistry $doctrine, $idProduct, $quantity): Response
     {
-        if ($boutique->findProduitById($idProduct) != null) {
+        // get the product using the ORM with his ID [idProduct]
+        $produit = $doctrine
+            ->getManager()
+            ->getRepository(Produit::class)
+            ->find($idProduct);
+
+        if ($produit) {
             $panier->ajouterProduit($idProduct, $quantity);
         } else {
-            throw $this->createNotFoundException("Le produit n\'existe pas !");
+            throw $this->createNotFoundException("Le produit [".$idProduct."] n\'existe pas !");
         }
         // appeler direct la méthods au app_panier_index
         return $this->redirectToRoute('app_panier_index');

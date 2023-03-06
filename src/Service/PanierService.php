@@ -1,24 +1,25 @@
 <?php
 namespace App\Service;
 
+use App\Entity\Produit;
 use Symfony\Component\HttpFoundation\RequestStack;
-use App\Service\BoutiqueService;
+use Doctrine\Persistence\ManagerRegistry;
 
 // Service pour manipuler le panier et le stocker en session
 class PanierService
 {
     ////////////////////////////////////////////////////////////////////////////
     private $session;   // Le service session
-    private $boutique;  // Le service boutique
+    private $doctrine;  // Le service doctrine
     private $panier;    // Tableau associatif, la clé est un idProduit, la valeur associée est une quantité
                         //   donc $this->panier[$idProduit] = quantité du produit dont l'id = $idProduit
     const PANIER_SESSION = 'panier'; // Le nom de la variable de session pour faire persister $this->panier
 
     // Constructeur du service
-    public function __construct(RequestStack $requestStack, BoutiqueService $boutique)
+    public function __construct(RequestStack $requestStack, ManagerRegistry $doctrine)
     {
-        // Récupération des services session et BoutiqueService
-        $this->boutique = $boutique;
+        // Récupération des services session et ManagerRepository
+        $this->doctrine = $doctrine;
         $this->session = $requestStack->getSession();
         // Récupération du panier en session s'il existe, init. à vide sinon
         $this->panier = $this->session->get('panier', array());
@@ -31,8 +32,12 @@ class PanierService
         $prixTotal = 0;
         // for each product in the cart, add the price*quantity of the product to the result
         foreach ($this->panier as $id => $quantite) {
-            $currentProduct = $this->boutique->findProduitById($id);
-            $prixTotal += ($currentProduct->prix)*$quantite;
+            $currentProduct = $this->doctrine
+            ->getManager()
+            ->getRepository(Produit::class)
+            ->find($id);
+
+            $prixTotal += $currentProduct->getPrix()*$quantite;
         }
         return $prixTotal;
     }
@@ -52,7 +57,11 @@ class PanierService
     // Ajouter au panier le produit $idProduit en quantite $quantite 
     public function ajouterProduit(int $idProduit, int $quantite = 1) : void
     {
-        if($this->boutique->findProduitById($idProduit) == null) {
+        $produit = $this->doctrine
+            ->getManager()
+            ->getRepository(Produit::class)
+            ->find($idProduit);
+        if(!$produit) {
             return;
         }
 
@@ -97,7 +106,10 @@ class PanierService
         // initialisation de l'array
         $cart = array();
         foreach ($this->panier as $idProduct => $quantity) {
-            $currentProduct = $this->boutique->findProduitById($idProduct);
+            $currentProduct = $this->doctrine
+            ->getManager()
+            ->getRepository(Produit::class)
+            ->find($idProduct);
             array_push($cart, array("produit" => $currentProduct, "quantite" => $quantity));
         }
         return $cart;

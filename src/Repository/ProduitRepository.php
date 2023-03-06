@@ -39,6 +39,20 @@ class ProduitRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @return Produit[] Returns an array of Produit objects
+     */
+    public function findByLibelleOrTexte(string $recherche): array {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.libelle LIKE :recherche OR p.texte LIKE :recherche')
+            ->setParameter('recherche', '%'.$recherche.'%')
+            ->orderBy('p.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
 //    /**
 //     * @return Produit[] Returns an array of Produit objects
 //     */

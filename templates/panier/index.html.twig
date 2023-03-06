@@ -49,7 +49,7 @@
                                          alt="{{ product.libelle }}">
                                 </td>
                                 <td>
-                                    <a href="{{ path('app_boutique_rayon', {'idCategorie': product.idCategorie}) }}">
+                                    <a href="{{ path('app_boutique_rayon', {'idCategorie': product.categorie.id}) }}">
                                         <b>{{ product.libelle }}</b>
                                     </a>
                                 </td>
