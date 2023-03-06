@@ -29,7 +29,7 @@ class BoutiqueController extends AbstractController
         name: 'app_boutique_rayon',
         requirements: ['_locale' => '%app.supported_locales%']
     )]
-    public function rayon(int $idCategorie, BoutiqueService $boutique) : Response
+    public function rayon(BoutiqueService $boutique, int $idCategorie) : Response
     {
         $produits = $boutique->findProduitsByCategorie($idCategorie);
         $category = $boutique->findCategorieById($idCategorie);

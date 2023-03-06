@@ -27,7 +27,7 @@
       </trans-unit>
       <trans-unit id="V7m_ZFp" resname="navbar.shoppingCart">
         <source>navbar.shoppingCart</source>
-        <target>{nbInCart} Produit(s)</target>
+        <target>{nbProduits} Produit(s)</target>
       </trans-unit>
       <trans-unit id="iVNeBrZ" resname="navbar.contact">
         <source>navbar.contact</source>

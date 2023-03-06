@@ -17,7 +17,9 @@
 			<li class="nav-item">
 				<a class="nav-link" href="{{ path('app_panier_index') }}">
 					<i class="fas fa-shopping-cart"></i>
-					{% trans %} navbar.shoppingCart {% endtrans %}
+					{% trans with {
+						'nbProduits': render(controller('App\\Controller\\PanierController::nombreProduits'))
+					}%} navbar.shoppingCart {% endtrans %}
 				</a>
 			</li>
 			<li class="nav-item">
