@@ -8,27 +8,48 @@ use App\Repository\UsagerRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/usager')]
+#[Route(
+    path: '{_locale}/usager',
+    requirements: ['_locale' => '%app.supported_locales%']
+)]
 class UsagerController extends AbstractController
 {
-    #[Route('/', name: 'app_usager_index', methods: ['GET'])]
+    #[Route(
+        path:'/',
+        name: 'app_usager_index',
+        methods: ['GET']
+    )]
     public function index(UsagerRepository $usagerRepository): Response
     {
         return $this->render('usager/index.html.twig', [
-            'usagers' => $usagerRepository->findAll(),
+            // sent to the template the usager with id = 1
+            'usager' => $usagerRepository->find(1),
         ]);
     }
 
-    #[Route('/new', name: 'app_usager_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, UsagerRepository $usagerRepository): Response
+    #[Route(
+        path: '/new',
+        name: 'app_usager_new',
+        methods: ['GET', 'POST']
+    )]
+    public function new(Request $request, UsagerRepository $usagerRepository, UserPasswordHasherInterface $passwordHasher): Response
     {
         $usager = new Usager();
         $form = $this->createForm(UsagerType::class, $usager);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // encode the password
+            $hashedPassword = $passwordHasher->hashPassword($usager, $usager->getPassword());
+            $usager->setPassword($hashedPassword);
+
+            // define the role of the usager
+            $usager->setRoles(["ROLE_CLIENT"]);
+
+
             $usagerRepository->save($usager, true);
 
             return $this->redirectToRoute('app_usager_index', [], Response::HTTP_SEE_OTHER);
@@ -38,41 +59,5 @@ class UsagerController extends AbstractController
             'usager' => $usager,
             'form' => $form,
         ]);
-    }
-
-    #[Route('/{id}', name: 'app_usager_show', methods: ['GET'])]
-    public function show(Usager $usager): Response
-    {
-        return $this->render('usager/show.html.twig', [
-            'usager' => $usager,
-        ]);
-    }
-
-    #[Route('/{id}/edit', name: 'app_usager_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Usager $usager, UsagerRepository $usagerRepository): Response
-    {
-        $form = $this->createForm(UsagerType::class, $usager);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $usagerRepository->save($usager, true);
-
-            return $this->redirectToRoute('app_usager_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('usager/edit.html.twig', [
-            'usager' => $usager,
-            'form' => $form,
-        ]);
-    }
-
-    #[Route('/{id}', name: 'app_usager_delete', methods: ['POST'])]
-    public function delete(Request $request, Usager $usager, UsagerRepository $usagerRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$usager->getId(), $request->request->get('_token'))) {
-            $usagerRepository->remove($usager, true);
-        }
-
-        return $this->redirectToRoute('app_usager_index', [], Response::HTTP_SEE_OTHER);
     }
 }
