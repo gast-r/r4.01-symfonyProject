@@ -5,6 +5,7 @@
 {% block body %}
     <h1>Usager index</h1>
 
+{#    TODO : afficher seulement nom et prénom de l'usager transmis, s'il existe     #}
     <table class="table">
         <thead>
             <tr>
@@ -14,11 +15,10 @@
                 <th>Password</th>
                 <th>Nom</th>
                 <th>Prenom</th>
-                <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for usager in usagers %}
+        {% if usager %}
             <tr>
                 <td>{{ usager.id }}</td>
                 <td>{{ usager.email }}</td>
@@ -26,18 +26,33 @@
                 <td>{{ usager.password }}</td>
                 <td>{{ usager.nom }}</td>
                 <td>{{ usager.prenom }}</td>
-                <td>
-                    <a href="{{ path('app_usager_show', {'id': usager.id}) }}">show</a>
-                    <a href="{{ path('app_usager_edit', {'id': usager.id}) }}">edit</a>
-                </td>
             </tr>
         {% else %}
             <tr>
                 <td colspan="7">no records found</td>
             </tr>
-        {% endfor %}
+        {% endif%}
         </tbody>
     </table>
 
-    <a href="{{ path('app_usager_new') }}">Create new</a>
+    {% if usager %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+        </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>{{ usager.nom }}</td>
+                <td>{{ usager.prenom }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+    {% endif %}
+
+
 {% endblock %}
