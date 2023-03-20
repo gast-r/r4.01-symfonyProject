@@ -153,6 +153,18 @@
         <source>panier.index.emptyCart</source>
         <target>__panier.index.emptyCart</target>
       </trans-unit>
+      <trans-unit id="v8qEcuv" resname="panier.index.nbProduct">
+        <source>panier.index.nbProduct</source>
+        <target>__panier.index.nbProduct</target>
+      </trans-unit>
+      <trans-unit id="Ga7tMgq" resname="panier.index.price">
+        <source>panier.index.price</source>
+        <target>__panier.index.price</target>
+      </trans-unit>
+      <trans-unit id="WxXGkuf" resname="navbar.usagerHome">
+        <source>navbar.usagerHome</source>
+        <target>__navbar.usagerHome</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

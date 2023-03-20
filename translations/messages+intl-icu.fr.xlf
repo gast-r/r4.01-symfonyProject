@@ -161,6 +161,10 @@
         <source>panier.index.price</source>
         <target>{price} €</target>
       </trans-unit>
+      <trans-unit id="WxXGkuf" resname="navbar.usagerHome">
+        <source>navbar.usagerHome</source>
+        <target>Accueil</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -34,9 +34,14 @@
 					{% trans %} navbar.signIn {% endtrans %}
 				</span>
 				<div class="dropdown-menu" aria-labelledby="dropdown01">
-					<a class="dropdown-item " href="login">
+					<a class="dropdown-item " href="{{ path('app_usager_new') }}">
 						{% trans %} navbar.signInRegister {% endtrans %}
 					</a>
+{#					add of the "accueil" entree in a navBar 			#}
+					<a class="dropdown-item " href="{{ path('app_usager_index') }}">
+						{% trans %} navbar.usagerHome {% endtrans %}
+					</a>
+
 					<a class="dropdown-item disabled" href="usager/compte">
 						{% trans %} navbar.myAccount {% endtrans %}
 					</a>
