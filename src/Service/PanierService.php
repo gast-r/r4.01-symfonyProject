@@ -1,7 +1,11 @@
 <?php
 namespace App\Service;
 
+use App\Entity\Commande;
+use App\Entity\LigneCommande;
 use App\Entity\Produit;
+use App\Entity\Usager;
+
 use Symfony\Component\HttpFoundation\RequestStack;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -113,6 +117,47 @@ class PanierService
             array_push($cart, array("produit" => $currentProduct, "quantite" => $quantity));
         }
         return $cart;
+    }
+
+    /**
+     * Create an order with the info of the cart PanierService for the user {@link Usager}usager.
+     * @param Usager $usager - the user that make the order
+     * @return Commande|null - the order create with the info of the cart {@link PanierService}PanierService
+     */
+    public function panierToCommande(Usager $usager) : ?Commande {
+        $order = new Commande();
+        // create of the order
+        $order->getDateCreation(new \DateTime());
+
+        // for each product in the cart,
+        //  - create a LigneCommande for this order
+        foreach ($this->panier as $idProduct => $quantity) {
+            // get the product with his id
+            $currentProduct = $this->doctrine
+                ->getManager()
+                ->getRepository(Produit::class)
+                ->find($idProduct);
+            $currentPrice = $currentProduct->getPrix()*$quantity;
+            // create the LigneCommande with these information
+            //  - the Produit of the LigneCommande
+            //  - the quantity of the Produit
+            //  - the total price for this product
+            $ligneCommande = new LigneCommande();
+            $ligneCommande->setArticle($currentProduct);
+            $ligneCommande->setQuantite($quantity);
+            $ligneCommande->setPrix($currentPrice);
+
+            // add the line to the order
+            $order->addLignesCommande($ligneCommande);
+        }
+
+        // add the order to the user
+        $usager->addCommande($order);
+
+        // empty the cart
+        $this->vider();
+
+        return $order;
     }
 
 }
