@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Categorie;
 use App\Entity\Produit;
+use App\Entity\Usager;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Service\PanierService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -84,6 +85,25 @@ class PanierController extends AbstractController
 
         // appeler direct la méthods au app_panier_index
         return $this->redirectToRoute('app_panier_index');
+    }
+
+    #[Route(
+        path: '/commander',
+        name: 'app_panier_commander',
+    )]
+    public function commander(PanierService $panier, ManagerRegistry $doctrine): Response
+    {
+        // get the usager with the ID 1 (temporary)
+        $user = $doctrine
+            ->getManager()
+            ->getRepository(Usager::class)
+            ->find(1);
+        $order = $panier->panierToCommande($user);
+
+        return $this->render('panier/commande.html.twig', [
+            'controller_name' => 'PanierController',
+            'order' => $order,
+        ]);
     }
 
     public function nombreProduits(PanierService $panier) : Response

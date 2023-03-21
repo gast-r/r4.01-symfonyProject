@@ -20,7 +20,7 @@
                 <a class="btn btn-primary" href="{{ path('app_boutique') }}">
                     {% trans %} panier.index.continueShopping {% endtrans %}</a>
                 {% if (nbProduct != 0) %}
-                    <a class="btn btn-primary" href="/panier/commander">
+                    <a class="btn btn-primary" href="{{ path('app_panier_commander') }}">
                         {% trans %} panier.index.placeOrder {% endtrans %}</a>
                 {% endif %}
             </div>

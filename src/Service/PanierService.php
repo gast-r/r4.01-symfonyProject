@@ -126,8 +126,9 @@ class PanierService
      */
     public function panierToCommande(Usager $usager) : ?Commande {
         $order = new Commande();
+
         // create of the order
-        $order->getDateCreation(new \DateTime());
+        $order->setDateCreation(new \DateTime());
 
         // for each product in the cart,
         //  - create a LigneCommande for this order
@@ -155,7 +156,7 @@ class PanierService
         $usager->addCommande($order);
 
         // empty the cart
-        $this->vider();
+        //$this->vider();
 
         return $order;
     }
