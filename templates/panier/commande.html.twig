@@ -16,7 +16,6 @@
                         <th>{% trans %} panier.commande.rankLastName {% endtrans %}s</th>
                         <th>{% trans %} panier.commande.numberOrder {% endtrans %}</th>
                         <th>{% trans %} panier.commande.orderDate {% endtrans %}</th>
-                        <th>{% trans %} panier.commande.status {% endtrans %}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -25,9 +24,6 @@
                         <td>{{ order.usager.nom }}</td>
                         <td>{{ order.id }}</td>
                         <td>{{ order.dateCreation | date('d-m-Y')}}</td>
-                        <td>
-                            <i class="fas fa-hourglass-half" data-toggle="tooltip" title="validation en Attente" data-placement="right"></i>
-                        </td>
                     </tr>
                     </tbody>
                 </table>
