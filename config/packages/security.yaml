@@ -38,7 +38,8 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/(%app.supported_locales%)/admin, roles: ROLE_ADMIN }
-        - { path: ^/(%app.supported_locales%)/usager, roles: ROLE_CLIENT }
+        - { path: '/{_locale}/panier/commander', roles: ROLE_CLIENT }
+        - { path: '/{_locale}/usager/', roles: ROLE_CLIENT }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
 
