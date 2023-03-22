@@ -93,11 +93,8 @@ class PanierController extends AbstractController
     )]
     public function commander(PanierService $panier, ManagerRegistry $doctrine): Response
     {
-        // get the usager with the ID 1 (temporary)
-        $user = $doctrine
-            ->getManager()
-            ->getRepository(Usager::class)
-            ->find(1);
+        // get the connected usar (Usager)
+        $user = $this->getUser();
         $order = $panier->panierToCommande($user);
 
         return $this->render('panier/commande.html.twig', [
