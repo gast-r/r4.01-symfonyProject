@@ -127,8 +127,12 @@ class PanierService
     public function panierToCommande(Usager $usager) : ?Commande {
         $order = new Commande();
 
+        // get the manager
+        $entityManager = $this->doctrine->getManager();
+
         // create of the order
         $order->setDateCreation(new \DateTime());
+        $order->setValidation(false);
 
         // for each product in the cart,
         //  - create a LigneCommande for this order
@@ -148,12 +152,23 @@ class PanierService
             $ligneCommande->setQuantite($quantity);
             $ligneCommande->setPrix($currentPrice);
 
+            // save the LigneCommande in the database
+            $entityManager->persist($ligneCommande);
+
             // add the line to the order
             $order->addLignesCommande($ligneCommande);
         }
 
+        // save the Commande in the database
+        $entityManager->persist($order);
+
         // add the order to the user
         $usager->addCommande($order);
+
+        // update the Usager in the database
+        $entityManager->refresh($usager);
+
+        $entityManager->flush();
 
         // empty the cart
         //$this->vider();
